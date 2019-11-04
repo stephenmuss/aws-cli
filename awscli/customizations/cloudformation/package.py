@@ -75,6 +75,14 @@ class PackageCommand(BasicCommand):
         },
 
         {
+            'name': 's3-endpoint-url',
+            'help_text': (
+                'Override the base S3 URL endpoint to which packages are'
+                ' uploaded.'
+            )
+        },
+
+        {
             'name': 'kms-key-id',
             'help_text': (
                 'The ID of an AWS KMS key that the command uses'
@@ -128,6 +136,7 @@ class PackageCommand(BasicCommand):
             "s3",
             config=Config(signature_version='s3v4'),
             region_name=parsed_globals.region,
+            endpoint_url=parsed_args.s3_endpoint_url,
             verify=parsed_globals.verify_ssl)
 
         template_path = parsed_args.template_file
